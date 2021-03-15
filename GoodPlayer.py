@@ -5,11 +5,14 @@ import Player
 
 class GoodPlayer(Player.Player):
     # need to have strategies for vote, leader choose and communicate
-    def strategies_decide(self):
+    def __init__(self, id):
+        super().__init__(id)
         # decide the functions for strategies, will be edited in inheritence
-        pass
+        self.vote_strategy = self.vote_strategy_1
+        self.choose_policy_strategy = self.choose_policy_strategy_1
+        self.communicate_strategy = self.communicate_strategy_1
 
-    def strategy1(self):
+    def vote_strategy_1(self):
         # strategy for turn
         # already got the information of the turn, update the leader selection
         if self.round == 0:
@@ -18,3 +21,9 @@ class GoodPlayer(Player.Player):
             self.policy_information[self.round - 1][
                 "is_policy_good"]
         return self.good_players_rank.index(max(self.good_players_rank))
+
+    def choose_policy_strategy_1(self):
+        return True
+
+    def communicate_strategy_1(self):
+        pass

@@ -13,10 +13,8 @@ class Player:
         self.round = 0
         self.players = []
         self.vote_strategy = None  # strategy for vote leader
-
-    def strategies_decide(self):
-        # decide the functions for strategies, will be edited in inheritence
-        pass
+        self.choose_policy_strategy = None  # strategy for choose policy
+        self.communicate_strategy = None  # strategy for communicate
 
     def set_players(self, lst_of_players):
         self.players = lst_of_players
@@ -28,11 +26,11 @@ class Player:
         self.round = round
 
     def vote_leader(self):
-        self.strategy()
+        self.vote_strategy()
 
     def leader_choose_policy(self):
-        return True  # True is good policy, False is bad policy
+        self.choose_policy_strategy()
 
     def communicate(self):
         # communicate with other players and transfer information
-        pass
+        self.communicate_strategy()
