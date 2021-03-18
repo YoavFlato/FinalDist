@@ -14,7 +14,7 @@ class BadPlayer(Player.Player):
     def vote_strategy_1(self):
         # strategy for turn
         # already got the information of the turn, update the leader selection
-        return params.n-params.f
+        return params.n
 
     def choose_policy_strategy_1(self):
         return False

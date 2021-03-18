@@ -11,9 +11,9 @@ class Player:
         self.policy_information = {}
         self.round = 0
         self.players = []
-        self.vote_strategy = None  # strategy for vote leader
-        self.choose_policy_strategy = None  # strategy for choose policy
-        self.communicate_strategy = None  # strategy for communicate
+        self.vote_strategy = None  # strategy for vote leader  :type: function
+        self.choose_policy_strategy = None  # strategy for choose policy  :type: function
+        self.communicate_strategy = None  # strategy for communicate  :type: function
 
     def set_players(self, lst_of_players):
         self.players = lst_of_players
@@ -25,10 +25,10 @@ class Player:
         self.round = round
 
     def vote_leader(self):
-        self.vote_strategy()
+        return self.vote_strategy()
 
     def leader_choose_policy(self):
-        self.choose_policy_strategy()
+        return self.choose_policy_strategy()
 
     def communicate(self):
         # communicate with other players and transfer information
