@@ -7,6 +7,7 @@ class GoodPlayer(Player.Player):
     # need to have strategies for vote, leader choose and communicate
     def __init__(self, id):
         super().__init__(id)
+        self.good_players_rank = [{"P": 0.0, "N": 0.0} for i in range(params.n)]  # (P_good-P_bad, number of selection to leadership)
         # decide the functions for strategies, will be edited in inheritence
         self.vote_strategy = self.vote_strategy_1
         self.choose_policy_strategy = self.choose_policy_strategy_1
@@ -16,11 +17,15 @@ class GoodPlayer(Player.Player):
         # strategy for turn
         # already got the information of the turn, update the leader selection
         if self.round == 0:
+            # first turn - choose randomly
             return random.randint(0, params.n - 1)
-        self.good_players_rank[self.policy_information[self.round - 1]["leader"]] = \
-            self.policy_information[self.round - 1][
-                "is_policy_good"]
-        return self.good_players_rank.index(max(self.good_players_rank))
+        # vote to highest P_good - P_bad
+        leader = self.good_players_rank[self.policy_information[self.round - 1]["leader"]]
+        add_P = 1 if self.policy_information[self.round - 1]["is_policy_good"] else -1
+        leader["P"] = leader["P"]*(leader["N"]/(leader["N"]+1)) + (add_P/(leader["N"]+1))  # update P_good - P_bad
+        leader["N"] = leader["N"] + 1
+
+        return self.good_players_rank.index(max([d["P"] for d in self.good_players_rank]))
 
     def choose_policy_strategy_1(self):
         return True

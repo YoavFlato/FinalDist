@@ -5,7 +5,6 @@ import random
 class Player:
     def __init__(self, id):
         self.id = id
-        self.good_players_rank = [0 for i in range(params.n)]
         # dict policy_information_from_others[i] = [(id_info_from, leader, is_policy_good) for each info in turn i]
         self.policy_information_from_others = {}
         # dict policy_information[i] = (leader, is_policy_good)

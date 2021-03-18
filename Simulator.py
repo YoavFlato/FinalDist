@@ -1,4 +1,5 @@
 from GoodPlayer import GoodPlayer
+from BadPlayer import BadPlayer
 from params import *
 import random
 
@@ -11,11 +12,11 @@ class Simulator():
             self.good_players[pid] = GoodPlayer(pid)
 
         self.bad_players = {}
-        for i in range(num_of_good):
+        for i in range(num_of_bad):
             pid = num_of_good + i
-            self.good_players[pid] = GoodPlayer(pid)
+            self.bad_players[pid] = BadPlayer(pid)
 
-        self.players = self.good_players.update(self.bad_players)
+        self.players = self.good_players + self.bad_players
 
         for player in self.players:
             player.set_players(self.players)
