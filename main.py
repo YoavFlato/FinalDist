@@ -8,9 +8,9 @@ from matplotlib import pyplot as plt
 def main():
     sim = Simulator(n, f, GoodPlayer, BadPlayer)
     y = []
-    for i in range(1, 52, 50):
+    for i in range(1, 100, 2):
         y.append(sim.simulate(i))
-    plt.plot(range(1, 52, 50), y)
+    plt.plot(range(1, 100, 2), y, 'o')
     plt.show()
 
 
