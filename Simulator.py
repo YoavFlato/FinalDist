@@ -1,16 +1,21 @@
-from params import *
+import params
 import random
 
 
 class Simulator():
     def __init__(self, num_of_good, num_of_bad, good_player_class, bad_palayer_class):
         self.players = {}
+        pid_lst = [i for i in range(num_of_bad + num_of_good - 1)]
+        # random.shuffle(pid_lst)
+        pid_lst = pid_lst[::-1]
         for i in range(num_of_good):
-            pid = i
+            pid = pid_lst[i]
             self.players[pid] = good_player_class(pid)
-        for i in range(num_of_bad):
-            pid = num_of_good + i
+        for i in range(num_of_bad - 1):
+            pid = pid_lst[num_of_good + i]
             self.players[pid] = bad_palayer_class(pid)
+
+        self.players[num_of_good + num_of_bad - 1] = bad_palayer_class(num_of_good + num_of_bad - 1)
 
         for player in self.players.values():
             player.set_players(self.players)
@@ -40,9 +45,10 @@ class Simulator():
 
         # The leader picks a new policy. He has a chance to automatically choose a good/bad policy,
         #   and otherwise he has free will.
-        if random.random() < probability_to_choose_bad_policy:
+        rand = random.random()
+        if rand < params.probability_to_choose_bad_policy:
             policy = False
-        elif random.random() < probability_to_choose_good_policy:
+        elif rand < params.probability_to_choose_good_policy:
             policy = True
         else:
             policy = self.players[new_leader_pid].leader_choose_policy()
@@ -51,15 +57,19 @@ class Simulator():
 
         # Update some precent of the players what policy was chosen and by whom
         for player in self.players.values():
-            if random.random() < probability_to_know_the_policy:
+            if random.random() < params.probability_to_know_the_policy:
                 player.update_policy(new_leader_pid, policy)
 
         # Let the players share information
         for player in self.players.values():
             player.communicate()
 
+        # flush information from communication
+        for player in self.players.values():
+            player.flush()
+
         self.round_num += 1
-        return policy
+        return policy, votes, new_leader_pid
 
     def simulate(self, num_of_rounds):
         """
@@ -69,7 +79,11 @@ class Simulator():
         """
         self.round_num = 0
         num_of_good_policies = 0
+        res_lst = []
         for i in range(num_of_rounds):
-               if self.round():
-                   num_of_good_policies += 1
-        return num_of_good_policies/num_of_rounds
+            policy, votes, leader = self.round()
+            if policy:
+                num_of_good_policies += 1
+            print(leader, i)
+            res_lst.append(num_of_good_policies / self.round_num)
+        return res_lst

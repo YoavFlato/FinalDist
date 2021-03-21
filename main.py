@@ -5,14 +5,14 @@ from params import n, f
 from matplotlib import pyplot as plt
 
 
-def main():
+def main(i):
     sim = Simulator(n, f, GoodPlayer, BadPlayer)
-    y = []
-    for i in range(1, 100, 2):
-        y.append(sim.simulate(i))
-    plt.plot(range(1, 100, 2), y, 'o')
+    res_lst = sim.simulate(i)
+    plt.xlabel("Number of turns")
+    plt.ylabel("Percentage of good policies")
+    plt.plot(range(1, i+1), res_lst, 'o')
     plt.show()
 
 
 if __name__ == '__main__':
-    main()
+    main(6000)

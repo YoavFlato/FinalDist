@@ -37,3 +37,6 @@ class Player:
 
     def flush(self):
         self.flush_strategy()
+
+    def update_liars(self, liar_id):
+        pass
