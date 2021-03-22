@@ -10,10 +10,10 @@ class GoodPlayer(Player.Player):
         self.players_rank = [{"P": 0.0, "N": 0.0} for i in
                              range(params.n + params.f)]  # (P_good-P_bad, number of selection to leadership)
         # decide the functions for strategies, will be edited in inheritence
-        self.vote_strategy = self.vote_strategy_4
-        self.choose_policy_strategy = self.choose_policy_strategy_4
-        self.communicate_strategy = self.communicate_strategy_4
-        self.flush_strategy = self.flush_4
+        self.vote_strategy = self.vote_strategy_5
+        self.choose_policy_strategy = self.choose_policy_strategy_5
+        self.communicate_strategy = self.communicate_strategy_5
+        self.flush_strategy = self.flush_5
         self.current_leader = 0
         self.liars = []  # pids of liars
 

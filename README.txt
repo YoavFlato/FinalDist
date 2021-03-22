@@ -1,8 +1,9 @@
 Distributed algorithms final project by Yoav Flato and Alon Kagan
 
-In order to run a simulation, run the main.py file - a grph will show up when the run ends.
+In order to run a simulation, run the main.py file - a graph will show up when the run ends.
 
-In order to change number of turns, change the parameter i in main(?) call, in main.py file
+In order to change number of turns, change the parameter ? in main(?,%) call, in main.py file
+The % parameter in main(?,%), True iff simulation run will be in worst case (ids 1 to f are bad)
 
 In order to change strategies of bad/good players you need to go to the init function
 in BadPlayer.py/GoodPlayer.py, and change in each relevant variable the number of strategy:

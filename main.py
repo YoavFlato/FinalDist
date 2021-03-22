@@ -5,8 +5,8 @@ from params import n, f
 from matplotlib import pyplot as plt
 
 
-def main(i):
-    sim = Simulator(n, f, GoodPlayer, BadPlayer)
+def main(i, is_worst_case):
+    sim = Simulator(n, f, GoodPlayer, BadPlayer, is_worst_case=is_worst_case)
     res_lst = sim.simulate(i)
     plt.xlabel("Number of turns")
     plt.ylabel("Percentage of good policies")
@@ -15,4 +15,4 @@ def main(i):
 
 
 if __name__ == '__main__':
-    main(1000)
+    main(100, True)

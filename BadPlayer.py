@@ -29,8 +29,7 @@ class BadPlayer(Player.Player):
     def vote_strategy_2(self):
         # strategy for turn
         # already got the information of the turn, update the leader selection
-        # TODO vote to the most voted by good players
-        return params.n-params.f
+        return params.n + params.f - 1
 
     def choose_policy_strategy_2(self):
         return False
