@@ -24,3 +24,15 @@ IN GOODPLAYERS:
 4 - good players also send to other players about good/bad policies they see
 5 - good players are catching false information from bad players, detect them as bad and
 share this information with other players
+
+
+PARAMS file
+
+In params file you can change the params in order to get differnet result in the simulation
+
+PARAMS EXPLANATION:
+n - number of good players
+f - number of bad players
+communication_bound - how much players each player can speak to during 1 turn communication
+(other probability params are explained in the params.py file)
+
