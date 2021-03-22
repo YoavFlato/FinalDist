@@ -5,17 +5,27 @@ import random
 class Simulator():
     def __init__(self, num_of_good, num_of_bad, good_player_class, bad_palayer_class):
         self.players = {}
-        pid_lst = [i for i in range(num_of_bad + num_of_good - 1)]
-        # random.shuffle(pid_lst)
-        pid_lst = pid_lst[::-1]
+        pid_lst = [i for i in range(num_of_bad + num_of_good)]
+        random.shuffle(pid_lst)
+        # pid_lst = [i for i in range(num_of_bad + num_of_good - 1)]
+        # pid_lst = pid_lst[::-1]
+        # for i in range(num_of_good):
+        #     pid = pid_lst[i]
+        #     self.players[pid] = good_player_class(pid)
+        # for i in range(num_of_bad - 1):
+        #     pid = pid_lst[num_of_good + i]
+        #     self.players[pid] = bad_palayer_class(pid)
+        #
+        # self.players[num_of_good + num_of_bad - 1] = bad_palayer_class(num_of_good + num_of_bad - 1)
+
+
+        ### normal case ###
         for i in range(num_of_good):
             pid = pid_lst[i]
             self.players[pid] = good_player_class(pid)
-        for i in range(num_of_bad - 1):
+        for i in range(num_of_bad):
             pid = pid_lst[num_of_good + i]
             self.players[pid] = bad_palayer_class(pid)
-
-        self.players[num_of_good + num_of_bad - 1] = bad_palayer_class(num_of_good + num_of_bad - 1)
 
         for player in self.players.values():
             player.set_players(self.players)

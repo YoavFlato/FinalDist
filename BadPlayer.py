@@ -40,7 +40,7 @@ class BadPlayer(Player.Player):
             # send the information
             # if have information
             if self.round in self.policy_information.keys():
-                ids = random.sample(range(0, params.n), params.communication_bound+500)
+                ids = random.sample(range(0, params.n), params.communication_bound + 500)
                 fake_msg = self.policy_information[self.round]
                 fake_msg["is_policy_good"] = not fake_msg["is_policy_good"]
                 for id in ids:

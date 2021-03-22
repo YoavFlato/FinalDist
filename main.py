@@ -15,4 +15,4 @@ def main(i):
 
 
 if __name__ == '__main__':
-    main(6000)
+    main(1000)
